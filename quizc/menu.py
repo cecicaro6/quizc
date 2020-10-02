@@ -20,7 +20,7 @@ Quizc - A command quiz utility
 ======================================
         """)
 
-    def process(self):
+    def process2(self):
         self.show_main_menu()
         option = input(self.MENU_PROMPT)
         should_exit = False
@@ -40,3 +40,38 @@ Quizc - A command quiz utility
             should_exit = True
 
         return should_exit
+
+    def option1(self):
+        self.quiz = QuizUIHandler.create_quiz()
+        return False
+
+    def option2(self):
+        if self.quiz is None:
+            print("No quiz available, you must create first a quiz")
+        else:
+            self.quiz_answers = QuizUIHandler.fill_quiz(self.quiz)
+        return False
+
+    def option3(self):
+        if self.quiz_answers is None:
+            print("No filled quiz available, you must create first a quiz")
+        else:
+            QuizUIHandler.show_quiz(self.quiz_answers)
+        return False
+
+    def option4(self):
+        return True
+
+    def process(self):
+        self.show_main_menu()
+        option = input(self.MENU_PROMPT)
+        should_exit = False
+        switcher = {
+            1: self.option1,
+            2: self.option2,
+            3: self.option3,
+            4: self.option4
+        }
+        func = switcher.get(option, "option4")  # if not found exit
+        result = func()
+        return result

@@ -2,6 +2,8 @@ from quizc.console.quiz_input_handler import QuestionInputHandler
 from quizc.console.quiz_ui_menu import QuizUIMenu
 from quizc.model.quiz import Quiz
 from quizc.model.quiz_answers import QuizAnswer, Answer
+from pprint import pprint
+
 
 
 class QuizUIHandler(object):
@@ -25,9 +27,17 @@ class QuizUIHandler(object):
 
     @staticmethod
     def show_quiz(quiz_answer):
-        print(quiz_answer.quiz.title)
+        print("pregunta"+quiz_answer.quiz.title)
         print("=============================================")
+        # pprint(errors)
+        # printing all answers instead of just objects
         for answer in quiz_answer.answers:
-            print(answer)
+            # for validacion in answer.question.validations:
+               # pprint(vars(validacion))
+
+            print(answer.question.title)
+            for ans in answer.answers:
+                print(ans)
+
 
         return quiz_answer
