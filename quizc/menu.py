@@ -67,11 +67,11 @@ Quizc - A command quiz utility
         option = input(self.MENU_PROMPT)
         should_exit = False
         switcher = {
-            1: self.option1,
-            2: self.option2,
-            3: self.option3,
-            4: self.option4
+        1: self.option1,
+        2: self.option2,
+        3: self.option3,
+        4: self.option4
         }
-        func = switcher.get(option, "option4")  # if not found exit
-        result = func()
+        func = switcher.get(int(option),self.option4) #if not found exit
+        result= func()
         return result
